@@ -3,17 +3,17 @@ const fs = require('fs')
 const request = require('request');
 
 
-request(`${args[0]}`, (error, response, body) => {
-  const content = body;
+request(args[0], (error, response, body) => {
 
   console.log('statusCode:', response && response.statusCode);
   
-  fs.writeFile(`${args[1]}`, content, err => {
+  fs.writeFile(args[1], body, err => {
     if (err) {
       console.error(error)
       return
     }
     //file written successfully
+    console.log(`Downloaded and saved ${body.length} bytes to ${args[1]}`);
   })
 
 }); 
